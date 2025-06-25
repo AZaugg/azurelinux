@@ -1,0 +1,22 @@
+diff --git a/libmamba/CMakeLists.txt b/libmamba/CMakeLists.txt
+index 16754c14..3f11e07a 100644
+--- a/libmamba/CMakeLists.txt
++++ b/libmamba/CMakeLists.txt
+@@ -599,7 +599,7 @@ macro(libmamba_create_target target_name linkage output_name)
+ 
+         find_package(CURL REQUIRED)
+         find_package(LibArchive REQUIRED)
+-        find_package(zstd REQUIRED)
++        find_library(ZSTD_LIBRARIES NAMES zstd)
+         find_package(BZip2 REQUIRED)
+         find_package(OpenSSL REQUIRED)
+ 
+@@ -622,7 +622,7 @@ macro(libmamba_create_target target_name linkage output_name)
+                 reproc
+                 reproc++
+                 simdjson::simdjson
+-                zstd::libzstd_shared
++		${ZSTD_LIBRARIES}
+                 solv::libsolv
+                 solv::libsolvext
+                 solv::cpp

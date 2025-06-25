@@ -1,16 +1,12 @@
 Summary:        C++ API for mamba depsolving library
 Name:           libmamba
-Version:        1.5.12
-Release:        2%{?dist}
+Version:        2.0.7
+Release:        1%{?dist}
 License:        BSD-3-Clause
 URL:            https://github.com/mamba-org/mamba
 Source0:        https://github.com/mamba-org/mamba/archive/%{name}-%{version}/%{name}-%{version}.tar.gz
 Vendor:         Microsoft Corporation
 Distribution:   Azure Linux
-# Force the install to be arch dependent
-Source1:        setup.py
-# Upstream fix for csh file
-Patch0:         libmamba-csh.patch
 # https://github.com/mamba-org/mamba/pull/3016
 Patch1:         libmamba-deps.patch
 # Use Fedora versions of yaml-cpp and zstd
@@ -27,7 +23,6 @@ BuildRequires:  libcurl-devel
 # Need CONDA_ADD_USE_ONLY_TAR_BZ2
 BuildRequires:  libsolv-devel
 BuildRequires:  openssl-devel
-BuildRequires:  cmake
 BuildRequires:  reproc-devel
 BuildRequires:  cmake(simdjson)
 BuildRequires:  spdlog-devel
@@ -83,7 +78,7 @@ Python bindings for libmamba.
 
 
 %prep
-%autosetup -p1 -n mamba-libmamba-%{version}
+%autosetup -p1 -n mamba-%{version}
 cp -p %SOURCE1 libmambapy/setup.py
 sed -i '/LIBRARY DESTINATION/s,\${CMAKE_CURRENT_SOURCE_DIR},${Python_STDARCH}/site-packages,' libmambapy/CMakeLists.txt
 
@@ -129,10 +124,13 @@ cd -
 
 %files -n python3-libmambapy -f %{pyproject_files}
 %doc CHANGELOG.md README.md
-%{python3_sitearch}/libmambapy/bindings.*
+%{python3_sitearch}/libmambapy/*
 
 %changelog
-* Fri April 11 2025 Riken Maharjan <rmaharjan@microsoft.com> - 1.5.12-2
+* Tue Jun 10 2025 Andy Zaugg <azaugg@linkedin.com - 2.0.7-1
+- Updated to 2.0.7-1
+
+* Fri Apr 11 2025 Riken Maharjan <rmaharjan@microsoft.com> - 1.5.12-2
 - Initial Azure Linux import from Fedora 42 (license: MIT)
 - License Verified
 

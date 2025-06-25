@@ -10111,8 +10111,8 @@
         "type": "other",
         "other": {
           "name": "libmamba",
-          "version": "1.5.12",
-          "downloadUrl": "https://github.com/mamba-org/mamba/archive/libmamba-1.5.12/libmamba-1.5.12.tar.gz"
+          "version": "2.0.7",
+          "downloadUrl": "https://github.com/mamba-org/mamba/archive/libmamba-2.0.7/libmamba-2.0.7.tar.gz"
         }
       }
     },
